@@ -8,23 +8,23 @@ while getopts "t:m:h" opt; do
     case $opt in
         t) THREADS="$OPTARG" ;;
         m) MEM="$OPTARG" ;;
-	h) echo "Usage: $0 [-t threads (default: 4)] [-m memory (default: 20G)] <fasta> <.meryl/ db> <output>"
+	h) echo "Usage: $0 [-t threads (default: 4)] [-m memory (default: 20G)] <fasta> <.meryl/ db> [output]"
            exit 0 ;;
         *) exit 1 ;;
     esac
 done
 shift $((OPTIND-1))
 
-if [ $# -lt 3 ]; then
+if [ $# -lt 2 ]; then
     echo "Error: Missing required arguments"
-    echo "Usage: $0 [-t threads (default: 4)] [-m memory (default: 20G)] <fasta> <.meryl/ db> <output>"
+    echo "Usage: $0 [-t threads (default: 4)] [-m memory (default: 20G)] <fasta> <.meryl/ db> [output]"
     exit 1
 fi
 
 
 INPUT_FASTA="$1"
 KDB="$2"
-OUTPUT="$3"
+OUTPUT="${3:-${INPUT_FASTA%.*}_kdist.tsv}"
 
 WORKDIR=$(dirname "$OUTPUT")
 TMPDIR="$WORKDIR/tmp_sort_$$"

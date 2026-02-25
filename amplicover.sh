@@ -5,10 +5,11 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 SIM_OPTS=""
 ARRAY_OPTS=""
+OUT_BED=""
 
 usage() {
     cat << EOF
-Amplicover - prototype v0.01
+Amplicover - prototype v0.1
 Usage: $0 [OPTIONS] <kdist.tsv> <ref.fasta>
 
 Required:
@@ -36,20 +37,24 @@ Array calling options (optional):
   -A <float>         Minimum proportion of k-mer overlap to merge arrays  [0.5]
   -a <float>         Minimum proportion of k-mer overlap to segregate arrays  [0.1]
 
+Output:
+  -o <path>          Output BED file path  [<input>_arrays.bed]
+
 Other:
   -h                 Help
 
 Example:
   $0 k-dist.tsv ref.fa
-  $0 -W 1000 -s 1000 -R 4.0 -d 25 -j 0.8 input.tsv ref.fa
+  $0 -W 1000 -s 1000 -R 4.0 -d 25 -j 0.8 -o output.bed input.tsv ref.fa
 
 EOF
     exit 0
 }
 
 # Parse options
-while getopts "W:s:R:d:j:D:J:l:t:H:e:m:p:c:M:A:a:h" opt; do
+while getopts "o:W:s:R:d:j:D:J:l:t:H:e:m:p:c:M:A:a:h" opt; do
     case $opt in
+	o) OUT_BED="$OPTARG" ;;
         W) SIM_OPTS="$SIM_OPTS -W $OPTARG" ;;
         s) SIM_OPTS="$SIM_OPTS -s $OPTARG" ;;
         R) SIM_OPTS="$SIM_OPTS -R $OPTARG" ;;
@@ -88,6 +93,8 @@ fi
 
 input=$1
 fasta=$2
+
+[ -z "$OUT_BED" ] && OUT_BED="${input}_arrays.bed"
 
 WIN=$(echo "$SIM_OPTS" | grep -oP '(?<=-W )[0-9]+' || echo "1000")
 
@@ -158,12 +165,12 @@ echo "[INFO] TDB created: ${input}_tdb.tsv"
 
 # Step 5: Array calling
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] Step 5: Array calling..."
-echo "[CMD] python3 $SCRIPT_DIR/scripts/get_arrays.py -i ${input}_tdb.tsv -o ${input}_arrays.bed -f $fasta -w $WIN $ARRAY_OPTS"
-python3 "$SCRIPT_DIR/scripts/get_arrays.py" -i ${input}_tdb.tsv -o ${input}_arrays.bed -f $fasta -w $WIN $ARRAY_OPTS 2> ${input}_arrays.log
+echo "[CMD] python3 $SCRIPT_DIR/scripts/get_arrays.py -i ${input}_tdb.tsv -o $OUT_BED -f $fasta -w $WIN $ARRAY_OPTS"
+python3 "$SCRIPT_DIR/scripts/get_arrays.py" -i ${input}_tdb.tsv -o $OUT_BED -f $fasta -w $WIN $ARRAY_OPTS 2> "${OUT_BED}.log"
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] ===== Pipeline Complete ====="
 echo "  Output TDB: ${input}_tdb.tsv"
-echo "  Output BED: ${input}_arrays.bed"
+echo "  Output BED: $OUT_BED"
 
 # Step 6: Amplicon calling
 

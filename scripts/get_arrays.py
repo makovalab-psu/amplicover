@@ -1262,7 +1262,7 @@ def main():
     #df.set_index("Start", drop=False, inplace=True)
     print(df.head())
     n_valid = len(df) - (args.win_ter * 2)
-    print(df.iloc[max(0, n_valid - 10): n_valid])   # n_valid 바로 위 10줄 정도 보기
+    print(df.iloc[max(0, n_valid - 10): n_valid])   
 
 
     # --- Run screening ---

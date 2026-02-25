@@ -170,7 +170,7 @@ def main():
         shift = args.window_size - 1
         W2 = args.neff_summary_window
         for i, row in enumerate(reader):
-            src = i + shift  # 원래 full-window 결과가 있는 인덱스를 당겨옴
+            src = i + shift 
             if src < n:
                 s = shannon[src]
                 r = run_cnt[src]
