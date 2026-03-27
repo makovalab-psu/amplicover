@@ -1,6 +1,6 @@
 # Amplicover
 
-Amplicon identification tool for vertebrate sex chromosomes based on K-mer
+Amplicon identification tool for vertebrate sex chromosomes based on k-mers, under development in the [Makova Lab](https://github.com/makovalab-psu)
 
 > **Note:** This tool is currently under active development.
 
