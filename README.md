@@ -77,9 +77,9 @@ BED format with two record types:
 
 If you reference Amplicover, please cite:
 
-> Github repository: https://github.com/KoByungJune/amplicover
+> Github repository: https://github.com/makovalab-psu/amplicover
 >
-> Zenodo DOI: https://doi.org/10.5281/zenodo.18778186
+> Zenodo DOI: .
 
 
 
