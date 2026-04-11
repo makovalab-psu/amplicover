@@ -47,9 +47,10 @@ meryl count k=21 output <asm.meryl> <asm.fasta>
 ### Step 2: Compute K-mer distance
 ```bash
 ./kmer_dist.sh <asm.fasta> <asm.meryl> [k-dist.tsv]
+```
 
 Optional output path for k-dist.tsv; default is the input FASTA directory.
-```
+
 
 ### Step 3: Identify amplicons
 ```bash
