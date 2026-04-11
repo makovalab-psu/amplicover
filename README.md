@@ -80,7 +80,7 @@ If you reference Amplicover, please cite:
 
 > Github repository: https://github.com/makovalab-psu/amplicover
 >
-> Zenodo DOI: .
+> Zenodo DOI: 10.5281/zenodo.19516839
 
 
 
