@@ -27,7 +27,7 @@ tqdm==4.67.1
 
 ## Installation
 ```bash
-git clone https://github.com/KoByungJune/amplicover.git
+git clone https://github.com/makovalab-psu/amplicover.git
 cd amplicover
 mamba create -n amplicover_env python=3.13 pandas numpy numba pysam edlib tqdm -c conda-forge
 mamba activate amplicover_env
