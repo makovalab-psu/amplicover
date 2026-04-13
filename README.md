@@ -29,7 +29,7 @@ tqdm==4.67.1
 ```bash
 git clone https://github.com/makovalab-psu/amplicover.git
 cd amplicover
-mamba create -n amplicover_env python=3.13 pandas numpy numba pysam edlib tqdm -c conda-forge
+mamba create -n amplicover_env python=3.13 pandas numpy numba pysam edlib tqdm -c conda-forge -c bioconda --channel-priority flexible
 mamba activate amplicover_env
 ```
 
