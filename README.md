@@ -30,10 +30,7 @@ tqdm==4.67.1
 git clone https://github.com/makovalab-psu/amplicover.git
 cd amplicover
 
-# Try strict channel priority first
-mamba create -n amplicover_env python=3.13 pandas numpy numba pysam edlib tqdm -c conda-forge -c bioconda --strict-channel-priority
-
-# If solving fails, try flexible priority
+# Try flexible priority
 mamba create -n amplicover_env python=3.13 pandas numpy numba pysam edlib tqdm -c conda-forge -c bioconda --channel-priority flexible
 
 # If your mamba does not support the flexible option, or if solving still fails, try disabling channel priority
