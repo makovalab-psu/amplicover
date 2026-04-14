@@ -54,6 +54,8 @@ export PATH=/path/to/minimap2:$PATH
 
 ## Usage
 
+All commands below assume you are in the `amplicover/` directory. Alternatively, add it to your PATH:
+export PATH=/path/to/amplicover:$PATH
 ### Step 1: Build Meryl database
 ```bash
 meryl count k=21 output <asm.meryl> <asm.fasta>
