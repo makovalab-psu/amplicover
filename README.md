@@ -8,7 +8,7 @@ Amplicon identification tool for vertebrate sex chromosomes based on k-mers, und
 
 ## Dependencies
 - Python >= 3.13
-- [Meryl 1.0](https://github.com/marbl/meryl)
+- [Meryl 1.0](https://github.com/marbl/meryl/releases/tag/v1.0)
 - [minimap2](https://github.com/lh3/minimap2)
 
 
